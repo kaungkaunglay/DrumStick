@@ -25,7 +25,7 @@ function MakeSound(k){
             crash.play();
             break;
         case 'l':
-            var kick = new Audio("sounds/kick.mp3");
+            var kick = new Audio("sounds/kick-bass.mp3");
             kick.play();
             break;
         default:
@@ -36,10 +36,19 @@ for(var i =0 ; i < document.querySelectorAll(".drum").length; i++){
     document.querySelectorAll("button")[i].addEventListener("click",function () {
         var buttonInnerHTML = this.innerHTML;
         MakeSound(buttonInnerHTML);
+        ButtonAnimation(buttonInnerHTML) ;
     });
 }
 document.addEventListener("keypress",function (event) {
     MakeSound(event.key);
+    ButtonAnimation(event.key);
 });
 
+function ButtonAnimation(key){
+   var active_button =  document.querySelector("."+key);
+   active_button.classList.add('pressed');
+   setTimeout(function () {
+       active_button.classList.remove('pressed');
+   }, 100);
+}
 //
